@@ -8,13 +8,17 @@ public class GameManager : MonoBehaviour {
     public ButtonController buttonController;
     public int select_electric;
 
-    public Button[] buttons;
+    public int life_kari;
 
+    public Image life_image;
+    public Sprite[] life_icon;
     // Use this for initialization
     void Start ()
     {
         select_electric = -1;
-	}
+        life_kari = 3;
+        SetLife(life_kari);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -26,5 +30,13 @@ public class GameManager : MonoBehaviour {
     {
         select_electric = select_ele;
     }
+
+    public void SetLife(int life)
+    {
+        life_kari = life;
+
+        life_image.sprite = life_icon[(life_kari-1>0)?life_kari-1:0];
+    }
     
+
 }
