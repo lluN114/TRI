@@ -33,9 +33,7 @@ public class GameManager : MonoBehaviour {
 
     public void SetLife(int life)
     {
-        life_kari = life;
-
-        life_image.sprite = life_icon[(life_kari-1>0)?life_kari-1:0];
+        life_image.sprite = life_icon[(life-1>0)?life-1:0];
     }
     
 
