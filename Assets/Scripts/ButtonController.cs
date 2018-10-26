@@ -39,6 +39,5 @@ public class ButtonController : MonoBehaviour {
 
         //Debug.Log(play_button);
         gameManager.SetSelectElectric(play_button);
-        gameManager.SetLife(play_button);
     }
 }

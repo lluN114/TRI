@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
 	void Update ()
     {
         Debug.Log(select_electric);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) &&life_kari<3)++life_kari;
+        if (Input.GetKeyDown(KeyCode.DownArrow) && life_kari>1) --life_kari;
+        
+        SetLife(life_kari);
     }
 
     public void SetSelectElectric(int select_ele)
