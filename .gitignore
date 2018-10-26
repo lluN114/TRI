@@ -13,6 +13,7 @@ ExportedObj/
 *.svd
 *.userprefs
 *.csproj
+*.gitignore
 *.pidb
 *.suo
 *.sln
@@ -39,3 +40,10 @@ Thumbs.db
 *.log #log files, for some plugins
 *.pyc #python bytecode cache, for some plugins.
 sysinfo.txt #Unity3D Generated File On Crash Reports
+<<<<<<< HEAD
+=======
+.vs/TRI/v15/Server/sqlite3/storage.ide-wal
+.vs/TRI/v15/Server/sqlite3/storage.ide-shm
+.vs/TRI/v15/Server/sqlite3/storage.ide
+>>>>>>> タイトル
+.vs/TRI/v15/Server/sqlite3/db.lock
