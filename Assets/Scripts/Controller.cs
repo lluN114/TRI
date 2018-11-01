@@ -11,6 +11,9 @@ public class Controller : MonoBehaviour
     private Vector2 touchStartPos;
     private Vector2 touchEndPos;
     private string Direction;
+
+    //オブジェクトタップ判定
+    private bool flg = false;
     
 
     void Start () {
@@ -37,21 +40,26 @@ public class Controller : MonoBehaviour
                 if (HitObj)
                 {
                     Debug.Log("hit object is " + HitObj.collider.gameObject.name);
+
+                    //タッチした位置を保存
+                    touchStartPos = new Vector2(Input.mousePosition.x,
+                                                Input.mousePosition.y);
+                    flg = true;
                 }
             }
 
-            //タッチした位置を保存
-            touchStartPos = new Vector2(Input.mousePosition.x,
-                                        Input.mousePosition.y);
+
+            
 
 
         }
         //離されたら
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0)&&flg == true)
         {
             //離した位置を保存
             touchEndPos = new Vector2(Input.mousePosition.x,
                                       Input.mousePosition.y);
+            flg = false;
             GetDirection();
         }
     }
