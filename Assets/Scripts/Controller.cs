@@ -14,6 +14,8 @@ public class Controller : MonoBehaviour
 
     //オブジェクトタップ判定
     private bool flg = false;
+
+    private Electric FrickElectric;
     
 
     void Start () {
@@ -40,7 +42,14 @@ public class Controller : MonoBehaviour
                 if (HitObj)
                 {
                     Debug.Log("hit object is " + HitObj.collider.gameObject.name);
-
+                    try
+                    {
+                        FrickElectric = HitObj.collider.gameObject.GetComponent<Electric>();
+                    }
+                    catch
+                    {
+                        Debug.Log("NO[ELECTRIC]");
+                    }
                     //タッチした位置を保存
                     touchStartPos = new Vector2(Input.mousePosition.x,
                                                 Input.mousePosition.y);
@@ -100,30 +109,34 @@ public class Controller : MonoBehaviour
             //タッチを検出
             Direction = "touch";
         }
-        FlickProcess();
+        FlickProcess(ref FrickElectric);
     }
-    void FlickProcess() { 
+    void FlickProcess(ref Electric elec) { 
 
         switch (Direction)
         {
             case "up":
                 //上フリックされた時の処理
                 Debug.Log("上");
+                elec.TurnForward(0, 1);
                 break;
 
             case "down":
                 //下フリックされた時の処理
                 Debug.Log("下");
+                elec.TurnForward(0, -1);
                 break;
 
             case "right":
                 //右フリックされた時の処理
                 Debug.Log("右");
+                elec.TurnForward(1, 0);
                 break;
 
             case "left":
                 //左フリックされた時の処理
                 Debug.Log("左");
+                elec.TurnForward( -1,0);
                 break;
 
             case "touch":
@@ -132,4 +145,5 @@ public class Controller : MonoBehaviour
                 break;
         }
     }
+
 }

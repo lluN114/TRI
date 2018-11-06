@@ -12,23 +12,39 @@ public class GameManager : MonoBehaviour {
 
     public Image life_image;
     public Sprite[] life_icon;
+
+    public Character Player;
+    public Character Enemy;
+
     // Use this for initialization
     void Start ()
     {
         select_electric = -1;
         life_kari = 3;
         SetLife(life_kari);
+
+        Player = GameObject.Find("Player").GetComponent<Character>();
+        Enemy = GameObject.Find("Enemy").GetComponent<Character>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(select_electric);
-
         if (Input.GetKeyDown(KeyCode.UpArrow) &&life_kari<3)++life_kari;
         if (Input.GetKeyDown(KeyCode.DownArrow) && life_kari>1) --life_kari;
         
         SetLife(life_kari);
+
+        //Playerが死んだら
+        if (Player.life <= 0)
+        {
+            GameOver();
+        }
+        //Enemyが死んだら
+        if (Enemy.life <= 0)
+        {
+            GameClear();
+        }
     }
 
     public void SetSelectElectric(int select_ele)
@@ -40,6 +56,14 @@ public class GameManager : MonoBehaviour {
     {
         life_image.sprite = life_icon[(life-1>0)?life-1:0];
     }
-    
+    void GameClear()
+    {
+        Debug.Log("CLEAR");
+    }
+    void GameOver()
+    {
+        Debug.Log("GAME OVER");
+    }
+
 
 }

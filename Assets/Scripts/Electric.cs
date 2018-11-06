@@ -9,6 +9,11 @@ public class Electric : MonoBehaviour
     private int currentTurn;//現在のターン回数
     public float speed;//速度
     public Vector2 forward;//方向
+    public float acceleration;//加速度
+
+    SpriteRenderer sp;//画像
+    public Sprite UpSprite;
+    public Sprite LeftSprite;
 
     // Use this for initialization
     void Start()
@@ -16,6 +21,9 @@ public class Electric : MonoBehaviour
         currentTurn = 0;
         speed = 6.0f;
         turnLimit = 5;
+        acceleration = 1.2f;
+        sp=GetComponent<SpriteRenderer>();
+        SpriteChange(forward);
     }
 
 
@@ -29,10 +37,12 @@ public class Electric : MonoBehaviour
     }
     void Move()
     {
-        transform.Translate(forward.normalized * speed * Time.deltaTime);
+        transform.Translate(forward * speed * Time.deltaTime);
     }
     public void TurnForward(float x=0, float y=0)
     {
+        //加速する
+        speed *= acceleration;
 
         //ターン回数が上限を超えていなければターンする
         if (currentTurn < turnLimit)
@@ -47,6 +57,7 @@ public class Electric : MonoBehaviour
                 forward.y = y;
             }
             currentTurn++;
+            SpriteChange(forward);
         }
         else
         {
@@ -58,6 +69,29 @@ public class Electric : MonoBehaviour
     {
         Debug.Log("Death");
         Destroy(gameObject);
+    }
+    void SpriteChange(Vector2 dir)
+    {
+        if (forward.x > 0)
+        {//右方向
+            sp.sprite = LeftSprite;
+            sp.flipX = true;
+        }
+        else if (forward.x < 0)
+        {//左方向
+            sp.sprite = LeftSprite;
+            sp.flipX = false;
+        }
+        else if (forward.y > 0)
+        {//上方向
+            sp.sprite = UpSprite;
+            sp.flipY = false;
+        }
+        else if (forward.y < 0)
+        {//下方向
+            sp.sprite = UpSprite;
+            sp.flipY = true;
+        }
     }
     void OnTriggerEnter2D(Collider2D c)
     {
