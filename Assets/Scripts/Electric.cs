@@ -22,23 +22,7 @@ public class Electric : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            TurnForward(new Vector2(0, 1));
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            TurnForward(new Vector2(-1, 0));
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            TurnForward(new Vector2(1, 0));
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            TurnForward(new Vector2(0, -1));
-        }
+        
 
         Move();
 
@@ -47,12 +31,21 @@ public class Electric : MonoBehaviour
     {
         transform.Translate(forward.normalized * speed * Time.deltaTime);
     }
-    public void TurnForward(Vector2 dir)
+    public void TurnForward(float x=0, float y=0)
     {
+
         //ターン回数が上限を超えていなければターンする
         if (currentTurn < turnLimit)
         {
-            forward = dir;
+            if (x == 0 && y == 0)
+            {
+                forward *= -1;
+            }
+            else
+            {
+                forward.x = x;
+                forward.y = y;
+            }
             currentTurn++;
         }
         else
@@ -69,11 +62,12 @@ public class Electric : MonoBehaviour
     void OnTriggerEnter2D(Collider2D c)
     {
         Debug.Log("WTF!" + c.name);
+        if (c.gameObject.layer == 13)
+        {
+            TurnForward();
+        }
     }
     void OnTriggerExit2D(Collider2D c)
     {
-        if (c.gameObject.layer == 12)
-            forward *= -1;
-
     }
 }
