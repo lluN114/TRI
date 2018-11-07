@@ -13,6 +13,7 @@ public class FadeManager : MonoBehaviour
     private static Canvas fadeCanvas;
     private static Image fadeImage;
 
+
     //フェード用Imageの透明度
     private static float alpha = 0.0f;
 
@@ -21,10 +22,21 @@ public class FadeManager : MonoBehaviour
     public static bool isFadeOut = false;
 
     //フェードしたい時間（単位は秒）
-    private static float fadeTime = 0.2f;
+    private static float fadeTime = 0.5f;
 
     //遷移先のシーン番号
     private static int nextScene = 1;
+
+    //開閉する扉のImage
+    private static Image doorLeftImage;
+    private static Image doorRightImage;
+
+    //開閉する扉の距離
+    private static float doorDistance;
+
+    //待ち時間
+    private static float waitTime;
+    private static bool isWait;
 
     //フェード用のCanvasとImage生成
     static void Init()
@@ -46,14 +58,43 @@ public class FadeManager : MonoBehaviour
 
         //Imageのサイズは適当に設定してください
         fadeImage.rectTransform.sizeDelta = new Vector2(1920, 1080);
+
+        //扉用のイメージを二つ作成
+        doorLeftImage = new GameObject("doorImageLeft").AddComponent<Image>();
+        doorLeftImage.sprite = Resources.Load<Sprite>("Sprite/shutter_0");
+        doorLeftImage.rectTransform.sizeDelta = new Vector2(320, 320);
+        doorLeftImage.transform.SetParent(fadeCanvas.transform, false);
+        doorLeftImage.rectTransform.localScale = new Vector3(-1,1,1);
+
+        doorRightImage = new GameObject("doorImageRight").AddComponent<Image>();
+        doorRightImage.sprite = Resources.Load<Sprite>("Sprite/shutter_1");
+        doorRightImage.rectTransform.sizeDelta = new Vector2(320, 320);
+        doorRightImage.transform.SetParent(fadeCanvas.transform, false);
+        doorRightImage.rectTransform.localScale = new Vector3(-1, 1, 1);
+
+        //待ち状態
+        waitTime = 0;
+        isWait = false;
     }
 
     //フェードイン開始
     public static void FadeIn()
     {
         if (fadeImage == null) Init();
-        fadeImage.color = Color.black;
+        fadeImage.color = Color.clear;
         isFadeIn = true;
+        
+        doorLeftImage.rectTransform.localPosition = new Vector3(
+        doorLeftImage.rectTransform.localPosition.x - doorDistance / 2,
+        doorLeftImage.rectTransform.localPosition.y,
+        doorLeftImage.rectTransform.localPosition.z
+        );
+
+        doorRightImage.rectTransform.localPosition = new Vector3(
+            doorRightImage.rectTransform.localPosition.x + doorDistance / 2,
+            doorRightImage.rectTransform.localPosition.y,
+            doorRightImage.rectTransform.localPosition.z
+            );
     }
 
     //フェードアウト開始
@@ -64,6 +105,21 @@ public class FadeManager : MonoBehaviour
         fadeImage.color = Color.clear;
         fadeCanvas.enabled = true;
         isFadeOut = true;
+
+        doorDistance = doorLeftImage.rectTransform.rect.width/*-(240*320/690)*/;
+
+        doorLeftImage.rectTransform.localPosition = new Vector3(
+            Camera.main.transform.position.x - doorDistance,
+            doorLeftImage.rectTransform.localPosition.y,
+            doorLeftImage.rectTransform.localPosition.z
+            );
+
+        doorRightImage.rectTransform.localPosition = new Vector3(
+            Camera.main.transform.position.x + doorDistance,
+            doorRightImage.rectTransform.localPosition.y,
+            doorRightImage.rectTransform.localPosition.z
+            );
+
     }
 
     void Update()
@@ -72,36 +128,78 @@ public class FadeManager : MonoBehaviour
         if (isFadeIn)
         {
             //経過時間から透明度計算
-            alpha -= Time.deltaTime / fadeTime;
+            //alpha -= Time.deltaTime / fadeTime;
+            float dst = (Time.deltaTime / fadeTime) * doorDistance;
 
             //フェードイン終了判定
-            if (alpha <= 0.0f)
+            if (doorLeftImage.rectTransform.localPosition.x <= -1*doorDistance)
             {
                 isFadeIn = false;
-                alpha = 0.0f;
+                //alpha = 0.0f;
                 fadeCanvas.enabled = false;
             }
 
+
+
             //フェード用Imageの透明度設定
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            //fadeImage.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            
+                //ポジション変更
+                doorLeftImage.rectTransform.localPosition = new Vector3(
+                doorLeftImage.rectTransform.localPosition.x - dst,
+                doorLeftImage.rectTransform.localPosition.y,
+                doorLeftImage.rectTransform.localPosition.z
+                );
+
+                doorRightImage.rectTransform.localPosition = new Vector3(
+                    doorRightImage.rectTransform.localPosition.x + dst,
+                    doorRightImage.rectTransform.localPosition.y,
+                    doorRightImage.rectTransform.localPosition.z
+                    );
+
+
         }
         else if (isFadeOut)
         {
             //経過時間から透明度計算
-            alpha += Time.deltaTime / fadeTime;
+            //alpha += Time.deltaTime / fadeTime;
+            float dst = (Time.deltaTime / fadeTime) * doorDistance;
 
             //フェードアウト終了判定
-            if (alpha >= 1.0f)
+            if (doorLeftImage.rectTransform.localPosition.x >= -1*doorDistance/2)
+            {
+                waitTime += Time.deltaTime;
+                isWait = true;
+                Debug.Log(waitTime);
+            }
+
+            if (waitTime>=1)
             {
                 isFadeOut = false;
-                alpha = 1.0f;
+                //alpha = 1.0f;
 
                 //次のシーンへ遷移
                 SceneManager.LoadScene(nextScene);
             }
 
             //フェード用Imageの透明度設定
-            fadeImage.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            //fadeImage.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+
+            if (isWait == false)
+            {
+                //ポジション変更
+                doorLeftImage.rectTransform.localPosition = new Vector3(
+                doorLeftImage.rectTransform.localPosition.x + dst,
+                doorLeftImage.rectTransform.localPosition.y,
+                doorLeftImage.rectTransform.localPosition.z
+                );
+
+                doorRightImage.rectTransform.localPosition = new Vector3(
+                    doorRightImage.rectTransform.localPosition.x - dst,
+                    doorRightImage.rectTransform.localPosition.y,
+                    doorRightImage.rectTransform.localPosition.z
+                    );
+            }
         }
     }
 }
