@@ -9,6 +9,7 @@ public class ElectricSpawner : MonoBehaviour {
     public GameObject electric;
     private float timer;
     public bool eUp, eDown, eRight, eLeft;
+    public bool isSpawned;
 
 
     // Use this for initialization
@@ -18,13 +19,19 @@ public class ElectricSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timer += Time.deltaTime;
 
-        if (timer >= SPAWN_DELAY)
+        if (isSpawned)
         {
-            timer = 0;
+            if (timer >= SPAWN_DELAY)
+            {
+                timer = 0;
 
-            Spawn();
+                Spawn();
+            }
+        }
+        else
+        {
+            timer += Time.deltaTime;
         }
 	}
     void Spawn()
