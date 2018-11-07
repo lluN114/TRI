@@ -11,6 +11,8 @@ public class Electric : MonoBehaviour
     public Vector2 forward;//方向
     public float acceleration;//加速度
 
+    public bool speedUP = false;
+
     SpriteRenderer sp;//画像
     public Sprite UpSprite;
     public Sprite LeftSprite;
@@ -19,7 +21,7 @@ public class Electric : MonoBehaviour
     void Start()
     {
         currentTurn = 0;
-        speed = 6.0f;
+        speed = 1.0f;
         turnLimit = 5;
         acceleration = 1.2f;
         sp=GetComponent<SpriteRenderer>();
@@ -42,7 +44,10 @@ public class Electric : MonoBehaviour
     public void TurnForward(float x=0, float y=0)
     {
         //加速する
-        speed *= acceleration;
+        if (speedUP)
+        {
+            speed *= acceleration;
+        }
 
         //ターン回数が上限を超えていなければターンする
         if (currentTurn < turnLimit)
