@@ -15,6 +15,9 @@ public class Electric : MonoBehaviour
     public Sprite UpSprite;
     public Sprite LeftSprite;
 
+    //屈折時に呼び出すオブジェクト
+    public GameObject refractionObj;
+
     // Use this for initialization
     void Start()
     {
@@ -58,11 +61,18 @@ public class Electric : MonoBehaviour
             }
             currentTurn++;
             SpriteChange(forward);
+            Reflaction();
         }
         else
         {
             Explosion();
         }
+    }
+    //屈折呼び出し
+    void Reflaction()
+    {
+        if(refractionObj!=null)
+        Instantiate(refractionObj, transform.position, transform.rotation);
     }
     //爆破
     void Explosion()

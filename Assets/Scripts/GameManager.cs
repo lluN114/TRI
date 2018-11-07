@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour {
     public ButtonController buttonController;
     public int select_electric;
 
-    public int life_kari;
 
     public Image life_image;
     public Sprite[] life_icon;
@@ -19,21 +18,22 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        select_electric = -1;
-        life_kari = 3;
-        SetLife(life_kari);
-
         Player = GameObject.Find("Player").GetComponent<Character>();
         Enemy = GameObject.Find("Enemy").GetComponent<Character>();
+
+        select_electric = -1;
+        Player.life = 3;
+        SetLife(Player.life);
+
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) &&life_kari<3)++life_kari;
-        if (Input.GetKeyDown(KeyCode.DownArrow) && life_kari>1) --life_kari;
+        if (Input.GetKeyDown(KeyCode.UpArrow) &&Player.life<3)++Player.life;
+        if (Input.GetKeyDown(KeyCode.DownArrow) && Player.life>1) --Player.life;
         
-        SetLife(life_kari);
+        SetLife(Player.life);
 
         //Playerが死んだら
         if (Player.life <= 0)

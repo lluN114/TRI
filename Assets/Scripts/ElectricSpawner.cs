@@ -27,12 +27,18 @@ public class ElectricSpawner : MonoBehaviour {
                 timer = 0;
 
                 Spawn();
+
             }
+            isSpawned = false;
         }
         else
         {
             timer += Time.deltaTime;
         }
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    Spawn();
+        //}
 	}
     void Spawn()
     {

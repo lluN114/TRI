@@ -9,20 +9,18 @@ public class CanvasManager : MonoBehaviour {
     Vector2 ScreenSize;
     Canvas canvas;
     CanvasScaler scaler;
-    public Image image;
 
     // Use this for initialization
     void Start()
     {
         canvas = gameObject.GetComponent<Canvas>();
         ScreenSize = new Vector2(Screen.width, Screen.height);
-        Vector2 size = image.GetComponent<RectTransform>().sizeDelta;
-
-        image.rectTransform.sizeDelta=new Vector2(ScreenSize.x,ScreenSize.y*0.4f);
-
-        scaler = gameObject.GetComponent<CanvasScaler>();
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = ScreenSize;
+        
+        //scaler = gameObject.GetComponent<CanvasScaler>();
+        //scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        //scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        //scaler.matchWidthOrHeight = 1;
+        //scaler.referenceResolution = ScreenSize;
     }
 	
 	// Update is called once per frame
@@ -36,13 +34,7 @@ public class CanvasManager : MonoBehaviour {
         {
             ScreenSize = new Vector2(Screen.width, Screen.height);
 
-            scaler.referenceResolution = ScreenSize;
-
-            //image.rectTransform.rect.Set(0, 0, ScreenSize.x, ScreenSize.y * 0.4f);
-            Debug.Log("x,y=" + ScreenSize.x + "," + ScreenSize.y);
-
-            //image.rectTransform.sizeDelta = new Vector2(ScreenSize.x, ScreenSize.y * 0.4f);
-
+            //scaler.referenceResolution = ScreenSize;
         }
     }
 }

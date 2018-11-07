@@ -111,7 +111,12 @@ public class Controller : MonoBehaviour
         }
         FlickProcess(ref FrickElectric);
     }
-    void FlickProcess(ref Electric elec) { 
+    void FlickProcess(ref Electric elec) {
+
+        if (elec == null)
+        {
+            return;
+        }
 
         switch (Direction)
         {

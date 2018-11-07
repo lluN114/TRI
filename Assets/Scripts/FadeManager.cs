@@ -61,16 +61,16 @@ public class FadeManager : MonoBehaviour
 
         //扉用のイメージを二つ作成
         doorLeftImage = new GameObject("doorImageLeft").AddComponent<Image>();
-        doorLeftImage.sprite = Resources.Load<Sprite>("Sprite/shutter_0");
+        doorLeftImage.sprite = Resources.Load<Sprite>("Sprite/shutter_2");
         doorLeftImage.rectTransform.sizeDelta = new Vector2(320, 320);
         doorLeftImage.transform.SetParent(fadeCanvas.transform, false);
-        doorLeftImage.rectTransform.localScale = new Vector3(-1,1,1);
+        //doorLeftImage.rectTransform.localScale = new Vector3(-1,1,1);
 
         doorRightImage = new GameObject("doorImageRight").AddComponent<Image>();
-        doorRightImage.sprite = Resources.Load<Sprite>("Sprite/shutter_1");
+        doorRightImage.sprite = Resources.Load<Sprite>("Sprite/shutter_3");
         doorRightImage.rectTransform.sizeDelta = new Vector2(320, 320);
         doorRightImage.transform.SetParent(fadeCanvas.transform, false);
-        doorRightImage.rectTransform.localScale = new Vector3(-1, 1, 1);
+        //doorRightImage.rectTransform.localScale = new Vector3(-1, 1, 1);
 
         //待ち状態
         waitTime = 0;
@@ -85,13 +85,13 @@ public class FadeManager : MonoBehaviour
         isFadeIn = true;
         
         doorLeftImage.rectTransform.localPosition = new Vector3(
-        doorLeftImage.rectTransform.localPosition.x - doorDistance / 2,
+        doorLeftImage.rectTransform.localPosition.x,
         doorLeftImage.rectTransform.localPosition.y,
         doorLeftImage.rectTransform.localPosition.z
         );
 
         doorRightImage.rectTransform.localPosition = new Vector3(
-            doorRightImage.rectTransform.localPosition.x + doorDistance / 2,
+            doorRightImage.rectTransform.localPosition.x,
             doorRightImage.rectTransform.localPosition.y,
             doorRightImage.rectTransform.localPosition.z
             );
@@ -132,7 +132,7 @@ public class FadeManager : MonoBehaviour
             float dst = (Time.deltaTime / fadeTime) * doorDistance;
 
             //フェードイン終了判定
-            if (doorLeftImage.rectTransform.localPosition.x <= -1*doorDistance)
+            if (doorLeftImage.rectTransform.localPosition.x <= -1*doorDistance*2)
             {
                 isFadeIn = false;
                 //alpha = 0.0f;
@@ -166,7 +166,7 @@ public class FadeManager : MonoBehaviour
             float dst = (Time.deltaTime / fadeTime) * doorDistance;
 
             //フェードアウト終了判定
-            if (doorLeftImage.rectTransform.localPosition.x >= -1*doorDistance/2)
+            if (doorLeftImage.rectTransform.localPosition.x >= 0)
             {
                 waitTime += Time.deltaTime;
                 isWait = true;
