@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour {
     public Character Player;
     public Character Enemy;
 
+    public GameObject GameClearSprite;
+    public GameObject GameOverSprite;
+
+
     // Use this for initialization
     void Start ()
     {
@@ -25,6 +29,9 @@ public class GameManager : MonoBehaviour {
 
         Player = GameObject.Find("Player").GetComponent<Character>();
         Enemy = GameObject.Find("Enemy").GetComponent<Character>();
+
+        GameClearSprite.SetActive(false);
+        GameOverSprite.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -58,11 +65,11 @@ public class GameManager : MonoBehaviour {
     }
     void GameClear()
     {
-        Debug.Log("CLEAR");
+        GameClearSprite.SetActive(true);
     }
     void GameOver()
     {
-        Debug.Log("GAME OVER");
+        GameOverSprite.SetActive(true);
     }
 
 
