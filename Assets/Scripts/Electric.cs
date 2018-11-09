@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Electric : MonoBehaviour
 {
-
     public int turnLimit;//ターン回数
     private int currentTurn;//現在のターン回数
     public float speed;//速度
@@ -19,7 +18,7 @@ public class Electric : MonoBehaviour
     public GameObject refractionObj;
 
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
         currentTurn = 0;
         speed = 6.0f;
@@ -31,7 +30,7 @@ public class Electric : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
 
@@ -75,7 +74,7 @@ public class Electric : MonoBehaviour
         Instantiate(refractionObj, transform.position, transform.rotation);
     }
     //爆破
-    void Explosion()
+    public virtual void Explosion()
     {
         Debug.Log("Death");
         Destroy(gameObject);
@@ -103,13 +102,14 @@ public class Electric : MonoBehaviour
             sp.flipY = true;
         }
     }
-    void OnTriggerEnter2D(Collider2D c)
+    public virtual void OnTriggerEnter2D(Collider2D c)
     {
         Debug.Log("WTF!" + c.name);
         if (c.gameObject.layer == 13)
         {
             TurnForward();
         }
+
     }
     void OnTriggerExit2D(Collider2D c)
     {

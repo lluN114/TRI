@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4294973877648968}
   - component: {fileID: 50767826323585994}
   - component: {fileID: 61394639797012904}
-  - component: {fileID: 114438724437522054}
   - component: {fileID: 212496709024629016}
+  - component: {fileID: 114561999012060134}
   m_Layer: 10
   m_Name: PlayerElectlical
   m_TagString: Untagged
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114438724437522054
+--- !u!114 &114561999012060134
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,16 +96,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838691547684226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d7749e0362eb240bef48576201944f, type: 3}
+  m_Script: {fileID: 11500000, guid: 24d82c3d7cb844e46a5424b33ebfd706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   turnLimit: 0
   speed: 0
-  forward: {x: 0, y: -1}
+  forward: {x: 0, y: 0}
   acceleration: 0
   UpSprite: {fileID: 21300000, guid: b7069dbc301964f458ab4651abef08fe, type: 3}
   LeftSprite: {fileID: 21300000, guid: d6a3509b1ff640e42853012526ce0231, type: 3}
-  refractionObj: {fileID: 0}
+  refractionObj: {fileID: 1057755546863178, guid: f77aa6b1b75fd2748a75badc4b2ae590,
+    type: 2}
 --- !u!212 &212496709024629016
 SpriteRenderer:
   m_ObjectHideFlags: 1

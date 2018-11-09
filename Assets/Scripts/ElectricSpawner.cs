@@ -35,11 +35,11 @@ public class ElectricSpawner : MonoBehaviour {
         {
             timer += Time.deltaTime;
         }
-        //if (Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    Spawn();
-        //}
-	}
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Spawn();
+        }
+    }
     void Spawn()
     {
         GameObject obj;
