@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198822484294805252}
   - component: {fileID: 114775591594537636}
   - component: {fileID: 199950976255327654}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EleBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 0}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -3660,9 +3660,9 @@ ParticleSystem:
       type: 0
       properties: 0
   LightsModule:
-    enabled: 1
-    ratio: 0
-    light: {fileID: 0}
+    enabled: 0
+    ratio: 1
+    light: {fileID: 108705075924944436, guid: d3a0e42da70e70f45a5f13d05b0fea78, type: 2}
     randomDistribution: 1
     color: 1
     range: 1
@@ -3723,7 +3723,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.06
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4602,8 +4602,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7ae34e0276e135d46a10ede731a50eed, type: 2}
+  - {fileID: 2100000, guid: 7ae34e0276e135d46a10ede731a50eed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
