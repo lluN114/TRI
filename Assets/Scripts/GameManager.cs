@@ -24,14 +24,13 @@ public class GameManager : MonoBehaviour {
         select_electric = -1;
         Player.life = 3;
         SetLife(Player.life);
-
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) &&Player.life<3)++Player.life;
-        if (Input.GetKeyDown(KeyCode.DownArrow) && Player.life>1) --Player.life;
+        if (Input.GetKeyDown(KeyCode.UpArrow) &&Player.life<3)Player.life++;
+        if (Input.GetKeyDown(KeyCode.DownArrow) && Player.life>1) Player.life++;
         
         SetLife(Player.life);
 
@@ -64,6 +63,4 @@ public class GameManager : MonoBehaviour {
     {
         Debug.Log("GAME OVER");
     }
-
-
 }
