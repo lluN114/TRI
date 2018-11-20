@@ -37,16 +37,13 @@ public class Titlebg : MonoBehaviour {
 
         for (int i = 1;i < ball_Vertical + 1;i++)//等間隔の縦Pos取得
         {
-            //heightPos.Add(height / (ball_Vertical + 1) * i);
             heightPos.Add(cam.ViewportToWorldPoint(new Vector3(0,1/(ball_Vertical + 1) * i,10)));
         }
 
         for (int i = 1; i < ball_horizontal + 1; i++)//等間隔の横Pos取得
         {
-            //widthPos.Add(width / (ball_horizontal + 1) * i);
             widthPos.Add(cam.ViewportToWorldPoint(new Vector3(1 / (ball_horizontal + 1) * i, 0, 10)));
         }
-
     }
 
     // Update is called once per frame
@@ -69,20 +66,20 @@ public class Titlebg : MonoBehaviour {
 
     }
 
-    void Vertical_Electoric()
+    void Vertical_Electoric()//横方向
     {
         GameObject EB_v;
         int anti_flag_v = 0;
-        anti_flag_v = Random.Range(0, 4);
-        anti_flag_v = (anti_flag_v > 2) ? 1 : 0;
+        anti_flag_v = Random.Range(0, 100);
+        anti_flag_v = (anti_flag_v > 50) ? 1 : 0;
         switch (anti_flag_v)//0:正方向 1:反対方向
         {
             case 0:
-                EB_v = Instantiate(Electoric_ball, heightPos[(int)Random.Range(0, ball_Vertical)], Quaternion.EulerAngles(0, 90, 90));
+                EB_v = Instantiate(Electoric_ball, heightPos[(int)Random.Range(0, ball_Vertical)], Quaternion.AngleAxis(90, new Vector3(0, 0, -1)));
                 break;
 
             case 1:
-                EB_v = Instantiate(Electoric_ball, -heightPos[(int)Random.Range(0, ball_horizontal)], Quaternion.EulerAngles(0, -90, -90));
+                EB_v = Instantiate(Electoric_ball, -heightPos[(int)Random.Range(0, ball_horizontal)], Quaternion.AngleAxis(90, new Vector3(0, 0, 1)));
                 break;
 
             default:
@@ -90,20 +87,20 @@ public class Titlebg : MonoBehaviour {
         }
     }
 
-    void Horizontal_Electoric()
+    void Horizontal_Electoric()//縦方向
     {
         GameObject EB_h;
         int anti_flag_h = 0;
-        anti_flag_h = Random.Range(0, 4);
-        anti_flag_h = (anti_flag_h > 2) ? 1 : 0;
+        anti_flag_h = Random.Range(0, 100);
+        anti_flag_h = (anti_flag_h > 50) ? 1 : 0;
         switch (anti_flag_h)//0:正方向 1:反対方向
         {
             case 0:
-                EB_h = Instantiate(Electoric_ball, widthPos[(int)Random.Range(0, ball_horizontal)], Quaternion.EulerAngles(-90, 0, 0));
+                EB_h = Instantiate(Electoric_ball, widthPos[(int)Random.Range(0, ball_horizontal)], Quaternion.AngleAxis(90, new Vector3(0, 0, 0)));
                 break;
 
             case 1:
-                EB_h = Instantiate(Electoric_ball, -widthPos[(int)Random.Range(0, ball_horizontal)], Quaternion.EulerAngles(90, 0, 0));
+                EB_h = Instantiate(Electoric_ball, -widthPos[(int)Random.Range(0, ball_horizontal)], Quaternion.AngleAxis(180, new Vector3(0, 0, -1)));
                 break;
 
             default:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleDelate : MonoBehaviour {
-
+    public float delete_time;
     // Use this for initialization
     float delate_timer;
 	void Start () {
@@ -13,7 +13,7 @@ public class ParticleDelate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         delate_timer += Time.deltaTime;
-        if(delate_timer > 10)
+        if(delate_timer > delete_time)
         {
             Destroy(this.gameObject);
         }
