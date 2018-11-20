@@ -56,12 +56,12 @@ public class FadeManager : MonoBehaviour
         //扉用のイメージを二つ作成
         doorLeftImage = new GameObject("doorImageLeft").AddComponent<Image>();
         doorLeftImage.sprite = Resources.Load<Sprite>("Sprite/shutter_3");
-        doorLeftImage.rectTransform.sizeDelta = new Vector2(320, 320);
+        doorLeftImage.rectTransform.sizeDelta = new Vector2(320, Screen.height);
         doorLeftImage.transform.SetParent(fadeCanvas.transform, false);
 
         doorRightImage = new GameObject("doorImageRight").AddComponent<Image>();
         doorRightImage.sprite = Resources.Load<Sprite>("Sprite/shutter_4");
-        doorRightImage.rectTransform.sizeDelta = new Vector2(320, 320);
+        doorRightImage.rectTransform.sizeDelta = new Vector2(320,Screen.height);
         doorRightImage.transform.SetParent(fadeCanvas.transform, false);
 
         //待ち状態
@@ -71,13 +71,13 @@ public class FadeManager : MonoBehaviour
         //カウントダウンイメージのロードと設定
         countDawnImageGo = new GameObject("countDownGo").AddComponent<Image>();
         countDawnImageGo.sprite = Resources.Load<Sprite>("Sprite/go");
-        countDawnImageGo.rectTransform.sizeDelta = new Vector2(320, 320);
+        countDawnImageGo.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         countDawnImageGo.transform.SetParent(fadeCanvas.transform, false);
         countDawnImageGo.enabled = false;
 
         countDawnImageReady = new GameObject("countDownReady").AddComponent<Image>();
         countDawnImageReady.sprite = Resources.Load<Sprite>("Sprite/ready");
-        countDawnImageReady.rectTransform.sizeDelta = new Vector2(320, 320);
+        countDawnImageReady.rectTransform.sizeDelta = new Vector2(Screen.width,Screen.height);
         countDawnImageReady.transform.SetParent(fadeCanvas.transform, false);
         countDawnImageReady.enabled = false;
 
@@ -103,22 +103,7 @@ public class FadeManager : MonoBehaviour
             doorRightImage.rectTransform.localPosition.y,
             doorRightImage.rectTransform.localPosition.z
             );
-
-        if (isFadeReady == true)
-        {
-            countDawnImageGo.rectTransform.localPosition = new Vector3(
-                countDawnImageGo.rectTransform.localPosition.x,
-                countDawnImageGo.rectTransform.localPosition.y,
-                countDawnImageGo.rectTransform.localPosition.z
-                );
-
-            countDawnImageReady.rectTransform.localPosition = new Vector3(
-                countDawnImageReady.rectTransform.localPosition.x,
-                countDawnImageReady.rectTransform.localPosition.y,
-                countDawnImageReady.rectTransform.localPosition.z
-                );
-        }
-        */
+            */
     }
 
     //フェードアウト開始
@@ -158,64 +143,56 @@ public class FadeManager : MonoBehaviour
         //フラグ有効なら毎フレームフェードイン/アウト処理
         if (isFadeIn)
         {
-            if (isFadeReady)
-            {
-                countDownWaitTime += Time.deltaTime;
-                countDawnImageReady.enabled = true;
+            //扉移動距離計算
+            float dst = (Time.deltaTime / fadeTime) * doorDistance;
 
-                if (countDownWaitTime >= 2)
-                {
-                    isFadeReady = false;
-                    countDawnImageReady.enabled = false;
-                    countDawnImageGo.enabled = true;
-                }
+            //フェードイン終了判定
+            if (doorLeftImage.rectTransform.localPosition.x <= -1 * doorDistance)
+            {
+                isFadeIn = false;
+                if(isFadeReady==false)fadeCanvas.enabled = false;
             }
 
-            else
-            {
-                //扉移動距離計算
-                float dst = (Time.deltaTime / fadeTime) * doorDistance;
+            //フェードイン扉移動
+            doorLeftImage.rectTransform.localPosition = new Vector3(
+                doorLeftImage.rectTransform.localPosition.x - dst,
+                doorLeftImage.rectTransform.localPosition.y,
+                doorLeftImage.rectTransform.localPosition.z
+            );
 
-                //フェードイン終了判定
-                if (doorLeftImage.rectTransform.localPosition.x <= -1 * doorDistance)
+            doorRightImage.rectTransform.localPosition = new Vector3(
+                doorRightImage.rectTransform.localPosition.x + dst,
+                doorRightImage.rectTransform.localPosition.y,
+                doorRightImage.rectTransform.localPosition.z
+                );
+        }
+
+        if (isFadeIn == false && isFadeReady == true)
+        {
+            countDownWaitTime += Time.deltaTime;
+            if(!isCountDownWait)countDawnImageReady.enabled = true;
+
+            if (countDownWaitTime >= 1)
+            {
+                countDawnImageReady.enabled = false;
+                countDawnImageGo.enabled = true;
+                countDownWaitTime = 0;
+
+                if (isCountDownWait == true)
                 {
-                    isFadeIn = false;
+                    isFadeReady = false;
+                    isCountDownWait = false;
                     fadeCanvas.enabled = false;
                 }
 
-                //フェードイン扉移動
-                doorLeftImage.rectTransform.localPosition = new Vector3(
-                    doorLeftImage.rectTransform.localPosition.x - dst,
-                    doorLeftImage.rectTransform.localPosition.y,
-                    doorLeftImage.rectTransform.localPosition.z
-                );
-
-                doorRightImage.rectTransform.localPosition = new Vector3(
-                    doorRightImage.rectTransform.localPosition.x + dst,
-                    doorRightImage.rectTransform.localPosition.y,
-                    doorRightImage.rectTransform.localPosition.z
-                    );
+                isCountDownWait = true;
             }
         }
-        else if (isFadeOut)
+
+        if (isFadeOut)
         {
             //扉の移動距離計算
             float dst = (Time.deltaTime / fadeTime) * doorDistance;
-
-            //フェードアウト終了判定
-            if (doorLeftImage.rectTransform.localPosition.x >= 0)
-            {
-                waitTime += Time.deltaTime;
-                isWait = true;
-            }
-
-            if (waitTime >= 1)
-            {
-                isFadeOut = false;
-
-                //次のシーンへ遷移
-                SceneManager.LoadScene(nextScene);
-            }
 
             if (isWait == false)
             {
@@ -231,6 +208,21 @@ public class FadeManager : MonoBehaviour
                     doorRightImage.rectTransform.localPosition.y,
                     doorRightImage.rectTransform.localPosition.z
                     );
+            }
+
+            //フェードアウト終了判定
+            if (doorLeftImage.rectTransform.localPosition.x >= 0)
+            {
+                waitTime += Time.deltaTime;
+                isWait = true;
+            }
+
+            if (waitTime >= 1)
+            {
+                isFadeOut = false;
+
+                //次のシーンへ遷移
+                SceneManager.LoadScene(nextScene);
             }
         }
     }
