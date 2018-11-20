@@ -17,8 +17,8 @@ public class EleBall : MonoBehaviour {
 	void Update () {
         Move();
 
-        bloom_cnt += Time.deltaTime * Flash_interval;
-        light.intensity = Mathf.Sin(bloom_cnt) * 0.5f + 1;
+        bloom_cnt += Mathf.PI * Time.deltaTime * Flash_interval;
+        light.intensity = 8 + Mathf.Sin(bloom_cnt) * 1.2f ;
 
     }
 

@@ -51,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295095784140690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.05}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4949051967924064}
@@ -81,8 +81,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_Range: 10
+  m_Intensity: 15
+  m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -120,8 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  bloom_cnt: 0
-  Flash_interval: 1.5
+  Flash_interval: 2
 --- !u!114 &114879465220278694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,4 +132,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3b45a2066f1984f87debb79b65c550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delete_time: 7
+  delete_time: 14

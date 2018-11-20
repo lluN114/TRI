@@ -962,8 +962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   between_spawn_time:
+  - 2
   - 3
-  - 7
   ball_Vertical: 15
   ball_horizontal: 9
   Electoric_ball: {fileID: 1305750717266350, guid: 55760334349aa4a4d8b5c329f04100ab,
