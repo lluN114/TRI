@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 
         GameClearSprite.SetActive(false);
         GameOverSprite.SetActive(false);
+
+        FadeManager.FadeReady();
     }
 
     // Update is called once per frame

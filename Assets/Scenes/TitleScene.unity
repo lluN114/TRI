@@ -978,7 +978,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1614042956}
-  - component: {fileID: 1614042955}
   - component: {fileID: 1614042957}
   - component: {fileID: 1614042958}
   m_Layer: 0
@@ -988,19 +987,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1614042955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1614042954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ab478bb06296e4bba2f1e3f437745c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 0}
-  t: {fileID: 1614042957}
 --- !u!4 &1614042956
 Transform:
   m_ObjectHideFlags: 0

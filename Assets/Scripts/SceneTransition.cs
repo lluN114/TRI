@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour {
 
+    bool input;
+
     public void Trans(string s)
     {
         SceneManager.LoadScene(s);
@@ -17,11 +19,17 @@ public class SceneTransition : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        input = false;
+
+        FadeManager.FadeIn();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(Input.GetMouseButtonDown(0) && !input)
+        {
+            input = true;
+            FadeManager.FadeOut(2);
+        }
 	}
 }

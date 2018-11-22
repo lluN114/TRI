@@ -143,6 +143,8 @@ public class FadeManager : MonoBehaviour
         //フラグ有効なら毎フレームフェードイン/アウト処理
         if (isFadeIn)
         {
+            if (isFadeReady)
+                countDawnImageReady.enabled = true;
             //扉移動距離計算
             float dst = (Time.deltaTime / fadeTime) * doorDistance;
 
