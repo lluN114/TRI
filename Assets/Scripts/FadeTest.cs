@@ -7,7 +7,7 @@ public class FadeTest : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        FadeManager.FadeIn();
+        FadeManager.FadeReady();
 	}
 	
 	// Update is called once per frame
