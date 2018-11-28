@@ -16,6 +16,8 @@ public class BgMove : MonoBehaviour {
     private float startTime;
     private Vector3 startPosition;
 
+    public GameObject Lightning;
+
     void OnEnable()
     {
         if (time <= 0)
@@ -35,6 +37,8 @@ public class BgMove : MonoBehaviour {
         if (diff > time)
         {
             transform.position = endPosition;
+            if (transform.name == "lose") GetComponent<SinWave>().enabled = true;
+            if (transform.name == "win") Lightning.SetActive(true);
             enabled = false;
         }
 
