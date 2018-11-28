@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject GameClearSprite;
     public GameObject GameOverSprite;
+    public GameObject GameOverBgSprite;
 
 
     // Use this for initialization
@@ -67,9 +68,11 @@ public class GameManager : MonoBehaviour {
     void GameClear()
     {
         GameClearSprite.SetActive(true);
+
     }
     void GameOver()
     {
+        GameOverBgSprite.SetActive(true);
         GameOverSprite.SetActive(true);
     }
 }
