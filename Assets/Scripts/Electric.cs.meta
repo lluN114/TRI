@@ -3,7 +3,10 @@ guid: 01d7749e0362eb240bef48576201944f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - UpSprite: {fileID: 21300000, guid: b7069dbc301964f458ab4651abef08fe, type: 3}
+  - LeftSprite: {fileID: 21300000, guid: b7069dbc301964f458ab4651abef08fe, type: 3}
+  - refractionObj: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

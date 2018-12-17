@@ -16,14 +16,14 @@ public class Character : MonoBehaviour {
 
     SpriteRenderer sp;
     // Use this for initialization
-    void Start () {
+    public virtual void Start () {
         life = 5;
         invincibleTimer = 0;
         sp = GetComponent<SpriteRenderer>();
 	}
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (life >= LIFE_MAX)
         {
@@ -48,8 +48,13 @@ public class Character : MonoBehaviour {
             }
         }
     }
+    //移動
+    public virtual void Move()
+    {
+
+    }
     //攻撃を食らった
-    void Damage()
+    public  virtual void Damage()
     {
         if (!isDamage)
         {
@@ -58,13 +63,13 @@ public class Character : MonoBehaviour {
         }
     }
     //破壊された
-    void Crash()
+    public virtual void Crash()
     {
 
     }
     void OnTriggerEnter2D(Collider2D c)
     {
-        Debug.Log("OMG!"+c.name);
+        //Debug.Log("OMG!"+c.name);
         Damage();
     }
 }

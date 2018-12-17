@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Electric
+  - Wall
+  - ElectricSpawner
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - EnemyElect
   - DestroyArea
   - Wall
-  - Ele
+  - ElectSpawner
   - 
   - 
   - 

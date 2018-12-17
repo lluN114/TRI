@@ -5,148 +5,144 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
 
-    public float margin = 20.0f; //フリック判定までの猶予距離
+    public float margin = 0.5f; //フリック判定までの猶予距離
 
     //タッチされた位置と離された位置を格納する変数
     private Vector2 touchStartPos;
     private Vector2 touchEndPos;
-    private string Direction;
 
     //オブジェクトタップ判定
-    private bool flg = false;
+    public bool isTouch = false;
 
-    private Electric FrickElectric;
-    
+    //現在衝突しているオブジェクト
+    public GameObject hitObj;
 
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Flick();
+    void Start() {
+        margin = 0.5f;
     }
 
-    void Flick()
+    // Update is called once per frame
+    void Update() {
+        FlickState();
+    }
+
+    public void FlickState()
     {
-        //タッチされたら
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //タッチされているときの挙動
+        if (isTouch)
         {
-
-            Vector2 TapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D CollisionObj = Physics2D.OverlapPoint(TapPoint);
-
-            if (CollisionObj)
-            {
-                RaycastHit2D HitObj = Physics2D.Raycast(TapPoint, -Vector2.up);
-                if (HitObj)
-                {
-                    Debug.Log("hit object is " + HitObj.collider.gameObject.name);
-                    try
-                    {
-                        FrickElectric = HitObj.collider.gameObject.GetComponent<Electric>();
-                    }
-                    catch
-                    {
-                        Debug.Log("NO[ELECTRIC]");
-                    }
-                    //タッチした位置を保存
-                    touchStartPos = new Vector2(Input.mousePosition.x,
-                                                Input.mousePosition.y);
-                    flg = true;
-                }
-            }
-
-
-            
-
-
-        }
-        //離されたら
-        if (Input.GetKeyUp(KeyCode.Mouse0)&&flg == true)
-        {
-            //離した位置を保存
-            touchEndPos = new Vector2(Input.mousePosition.x,
-                                      Input.mousePosition.y);
-            flg = false;
-            GetDirection();
+            //GetDirection();
+            //移動中の位置を保存
+            touchEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
-    void GetDirection()
+    public void StartTouch(Vector2 input)
+    {
+        //タッチした位置を保存
+        touchStartPos = input;
+        Collider2D collisionObj = Physics2D.OverlapPoint(touchStartPos);
+
+        //例キャストをして当たったもの(最上層)を検出
+        try
+        {
+            hitObj = Physics2D.Raycast(touchStartPos, -Vector2.up).collider.gameObject;
+            if (hitObj != null)
+            {
+                Debug.Log("hit object is " + hitObj.name);
+                isTouch = true;
+            }
+        }
+        catch
+        {
+            Debug.Log("Object NULL");
+        }
+    }
+    public void StartTouch(GameObject obj)
+    {
+        touchStartPos = new Vector2(0, 0);
+        //オブジェクトを設定
+        hitObj = obj;
+        isTouch = true;
+    }
+
+    public void EndTouch(Vector2 input)
+    {
+        //離した位置を保存
+        touchEndPos = input;
+
+        //保存したオブジェクトへのアクション
+        FlickCheck(ref hitObj, GetDirection(touchStartPos, touchEndPos));
+
+        isTouch = false;
+    }
+
+    Vector2 GetDirection(Vector2 start,Vector2 end)
     {
         //離された座標からタッチされた座標を引いて各変数に格納
-        float directionX = touchEndPos.x - touchStartPos.x;
-        float directionY = touchEndPos.y - touchStartPos.y;
+        float directionX = end.x - start.x;
+        float directionY = end.y - start.y;
+        
+        //フリック範囲が猶予以内ならフリック判定をなくす
+        if (Vector2.Distance(start, end) <= margin)
+        {
+            return new Vector2(0, 0);
+        }
 
         if (Mathf.Abs(directionY) < Mathf.Abs(directionX))
         {
-            if (margin < directionX)
+            if (directionY < directionX)
             {
                 //右向きにフリック
-                Direction = "right";
+                return new Vector2(1, 0);
             }
-            else if (-margin > directionX)
+            else if (directionY > directionX)
             {
                 //左向きにフリック
-                Direction = "left";
+                return new Vector2(-1, 0);
             }
         }
         else if (Mathf.Abs(directionX) < Mathf.Abs(directionY))
         {
-            if (margin < directionY)
+            if (directionX < directionY)
             {
                 //上向きにフリック
-                Direction = "up";
+                return new Vector2(0, 1);
             }
-            else if (-margin > directionY)
+            else if (directionX > directionY)
             {
                 //下向きのフリック
-                Direction = "down";
+                return new Vector2(0, -1);
             }
         }
-        else
-        {
-            //タッチを検出
-            Direction = "touch";
-        }
-        FlickProcess(ref FrickElectric);
+        return new Vector2(0, 0);
     }
-    void FlickProcess(ref Electric elec) {
-
-        if (elec == null)
+    void FlickCheck(ref GameObject obj,Vector2 vec)
+    {
+        if (obj == null)
         {
             return;
         }
+        Debug.Log(obj.tag);
 
-        switch (Direction)
+        switch (obj.tag)
         {
-            case "up":
-                //上フリックされた時の処理
-                Debug.Log("上");
-                elec.TurnForward(0, 1);
+            case "Player":
                 break;
-
-            case "down":
-                //下フリックされた時の処理
-                Debug.Log("下");
-                elec.TurnForward(0, -1);
+            case "Enemy":
                 break;
-
-            case "right":
-                //右フリックされた時の処理
-                Debug.Log("右");
-                elec.TurnForward(1, 0);
+            case "Electric":
+                obj.GetComponent<Electric>().TurnForward(vec.x, vec.y);
                 break;
-
-            case "left":
-                //左フリックされた時の処理
-                Debug.Log("左");
-                elec.TurnForward( -1,0);
+            case "DestroyArea":
                 break;
-
-            case "touch":
-                //タッチされた時の処理
-                Debug.Log("タップ");
+            case "Wall":
+                break;
+            case "ElectricSpawner":
+                obj.GetComponent<ElectricSpawner>().Spawn(vec);
+                Debug.Log("SPAWN");
+                break;
+            default:
+                Debug.Log("ON");
                 break;
         }
     }

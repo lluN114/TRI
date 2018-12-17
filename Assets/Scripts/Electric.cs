@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Electric : MonoBehaviour
 {
-
     public int turnLimit;//ターン回数
     private int currentTurn;//現在のターン回数
     public float speed;//速度
@@ -17,13 +16,17 @@ public class Electric : MonoBehaviour
 
     //屈折時に呼び出すオブジェクト
     public GameObject refractionObj;
+    //破壊時に呼び出すオブジェクトのパスとオブジェクト
+    public GameObject ExplosionObj;
+
+    bool isTurned;
 
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
-        currentTurn = 0;
-        speed = 6.0f;
-        turnLimit = 5;
+        //currentTurn = 0;
+        speed = 3.0f;
+        turnLimit = 3;
         acceleration = 1.2f;
         sp=GetComponent<SpriteRenderer>();
         SpriteChange(forward);
@@ -31,28 +34,28 @@ public class Electric : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        
 
         Move();
 
     }
     void Move()
     {
-        transform.Translate(forward * speed * Time.deltaTime);
+        transform.Translate(forward * speed * acceleration * (currentTurn+1) * Time.deltaTime);
     }
     public void TurnForward(float x=0, float y=0)
     {
-        //加速する
-        speed *= acceleration;
-
         //ターン回数が上限を超えていなければターンする
         if (currentTurn < turnLimit)
         {
             if (x == 0 && y == 0)
             {
-                forward *= -1;
+                transform.Translate(-forward * speed * acceleration * Time.deltaTime*2);
+                CloneElectric(new Vector2(-forward.y, -forward.x));
+                CloneElectric(new Vector2(forward.y, forward.x));
+                //forward = new Vector2(forward.y, forward.x);
+                Explosion();
             }
             else
             {
@@ -71,15 +74,26 @@ public class Electric : MonoBehaviour
     //屈折呼び出し
     void Reflaction()
     {
-        if(refractionObj!=null)
-        Instantiate(refractionObj, transform.position, transform.rotation);
+        if (refractionObj != null)
+            Instantiate(refractionObj, transform.position, transform.rotation);
     }
     //爆破
-    void Explosion()
+    public virtual void Explosion()
     {
-        Debug.Log("Death");
+        if (ExplosionObj != null)
+            Instantiate(ExplosionObj, transform.position, transform.rotation);
+
         Destroy(gameObject);
     }
+    //自身のコピーを作って逆方向に生成
+    void CloneElectric(Vector2 dir)
+    {
+        GameObject obj = Instantiate(this.gameObject, transform.position, transform.rotation)as GameObject;
+        Electric elec = obj.GetComponent<Electric>();
+        elec.forward = dir;
+        elec.currentTurn = currentTurn+1;
+    }
+    //画像の変更
     void SpriteChange(Vector2 dir)
     {
         if (forward.x > 0)
@@ -103,15 +117,22 @@ public class Electric : MonoBehaviour
             sp.flipY = true;
         }
     }
-    void OnTriggerEnter2D(Collider2D c)
+    public virtual void OnTriggerEnter2D(Collider2D c)
     {
-        Debug.Log("WTF!" + c.name);
+        //Debug.Log("WTF!" + c.name);
         if (c.gameObject.layer == 13)
         {
             TurnForward();
         }
     }
+    void OnTriggerStay2D(Collider2D c)
+    {
+
+    }
     void OnTriggerExit2D(Collider2D c)
     {
+        if (c.gameObject.layer == 13)
+        {
+        }
     }
 }

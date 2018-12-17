@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElectricSpawner : MonoBehaviour {
 
-    public float SPAWN_DELAY;//生成間隔
+    public float spawnDelay;//生成間隔
 
     public GameObject electric;
     private float timer;
@@ -14,34 +14,32 @@ public class ElectricSpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        spawnDelay = 2.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (isSpawned)
-        {
-            if (timer >= SPAWN_DELAY)
-            {
-                timer = 0;
-
-                Spawn();
-
-            }
-            isSpawned = false;
-        }
-        else
+        if (!isSpawned)
         {
             timer += Time.deltaTime;
+            if (timer >= spawnDelay)
+            {
+                isSpawned = true;
+            }
         }
-        //if (Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    Spawn();
-        //}
-	}
-    void Spawn()
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Spawn();
+        }
+    }
+    public void Spawn()
     {
+        if(!isSpawned)
+        {
+            return;
+        }
+
         GameObject obj;
         if (eUp)
         {
@@ -63,5 +61,37 @@ public class ElectricSpawner : MonoBehaviour {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(-1, 0);
         }
+
+        //スポナー初期化
+        isSpawned = false;
+        timer = 0.0f;
+    }
+    public void Spawn(Vector2 vec)
+    {
+        GameObject obj;
+
+        if (!isSpawned)
+        {
+            return;
+        }
+
+        if (vec.x == 0 && vec.y == 0)
+        {
+            Spawn();
+        }
+        else
+        {
+            obj = Instantiate(electric, transform.position, transform.rotation);
+            obj.GetComponent<Electric>().forward = vec;
+        }
+
+        //スポナー初期化
+        isSpawned = false;
+        timer = 0.0f;
+
+    }
+    public float GetTimer()
+    {
+        return timer;
     }
 }
