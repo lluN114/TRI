@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,7 @@ public class ObjectManager : MonoBehaviour {
 
     public List<GameObject> Players;
     public List<GameObject> Enemys;
-    public List<GameObject> PlayerElects;
-    public List<GameObject> EnemyElects;
+    public List<GameObject> Electrics;
 
     public GameObject obj;
 
@@ -34,11 +34,8 @@ public class ObjectManager : MonoBehaviour {
             case "Enemy":
                 Enemys.Add(o);
                 break;
-            case "PlayerElec":
-                PlayerElects.Add(o);
-                break;
-            case "EnemyElec":
-                EnemyElects.Add(o);
+            case "Electrics":
+                Electrics.Add(o);
                 break;
             default:
                 break;

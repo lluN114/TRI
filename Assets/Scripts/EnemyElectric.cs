@@ -7,6 +7,7 @@ public class EnemyElectric : Electric {
 	// Use this for initialization
 	public override void Start () {
         base.Start();
+        name = "EnemyElectric";
 	}
 	
 	// Update is called once per frame
