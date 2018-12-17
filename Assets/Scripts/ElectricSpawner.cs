@@ -15,6 +15,7 @@ public class ElectricSpawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spawnDelay = 2.0f;
+        gameObject.tag = "ElectricSpawner";
 	}
 	
 	// Update is called once per frame
