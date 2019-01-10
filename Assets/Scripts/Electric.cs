@@ -21,21 +21,28 @@ public class Electric : MonoBehaviour
 
     bool isTurned;
 
+    //生成・反転した後にどれだけタッチを受け付けないか
+    float notTouchDelay;
+    const float notTouchDelayLimit = 0.2f;
+
     // Use this for initialization
     public virtual void Start()
     {
+        notTouchDelay = 0.0f;
         //currentTurn = 0;
         speed = 3.0f;
         turnLimit = 3;
         acceleration = 1.2f;
         sp=GetComponent<SpriteRenderer>();
         SpriteChange(forward);
+        gameObject.tag = "Electric";
     }
 
 
     // Update is called once per frame
     public virtual void Update()
     {
+        notTouchDelay += Time.deltaTime;
 
         Move();
 
@@ -44,14 +51,19 @@ public class Electric : MonoBehaviour
     {
         transform.Translate(forward * speed * acceleration * (currentTurn+1) * Time.deltaTime);
     }
-    public void TurnForward(float x=0, float y=0)
+    public void TurnForward(float x = 0, float y = 0)
     {
+        if (notTouchDelay < notTouchDelayLimit)
+            return;
+
+        notTouchDelay = 0.0f;
+
         //ターン回数が上限を超えていなければターンする
         if (currentTurn < turnLimit)
         {
             if (x == 0 && y == 0)
             {
-                transform.Translate(-forward * speed * acceleration * Time.deltaTime*2);
+                transform.Translate(-forward * speed * acceleration * Time.deltaTime * 2);
                 CloneElectric(new Vector2(-forward.y, -forward.x));
                 CloneElectric(new Vector2(forward.y, forward.x));
                 //forward = new Vector2(forward.y, forward.x);
@@ -70,6 +82,10 @@ public class Electric : MonoBehaviour
         {
             Explosion();
         }
+    }
+    public void TurnForward(Vector2 vec)
+    {
+        TurnForward(vec.x, vec.y);
     }
     //屈折呼び出し
     void Reflaction()
@@ -131,8 +147,14 @@ public class Electric : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D c)
     {
+        //DestroyArea
+        if (c.gameObject.layer == 12)
+        {
+            Destroy(gameObject);
+        }
         if (c.gameObject.layer == 13)
         {
+
         }
     }
 }

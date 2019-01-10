@@ -12,6 +12,7 @@ public class PlayerController : Controller {
     // Update is called once per frame
     void Update()
     {
+        //押されたら
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             StartTouch(Camera.main.ScreenToWorldPoint(Input.mousePosition));

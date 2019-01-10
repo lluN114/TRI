@@ -36,7 +36,6 @@ public class CameraController : MonoBehaviour {
             if (Input.mousePosition.y / WinSize.y <= TOUCH_ACCEPT_HEIGHT)
             {
                 touchPos = Input.mousePosition;
-                Debug.Log("TOUCH!!!");
             }
         }
         if (Input.GetKey(KeyCode.Mouse0))

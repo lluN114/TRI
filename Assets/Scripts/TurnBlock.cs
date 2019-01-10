@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnBlock : MonoBehaviour {
+//その方向に強制的に移動させるマス
+public class TurnBlock : Block {
 
     public Vector2 forward;
 
+
     // Use this for initialization
-    void Start()
+    public void Start()
     {
-        gameObject.tag = "TurnBlock";
-        
+   
     }
-    
-    // Update is called once per frame
-	void Update () {
-		
-	}
+
+    public override void BlockAction()
+    {
+        base.BlockAction();
+    }
 }
