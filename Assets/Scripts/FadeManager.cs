@@ -40,6 +40,10 @@ public class FadeManager : MonoBehaviour
     private static float countDownWaitTime;
     private static bool isCountDownWait;
 
+    //サイズ調整関連
+    //画面サイズひっぱてきて倍率で画像サイズドーン
+    //基本は画像サイズで取ってあるからそれで大丈夫なはず
+
     //フェード用のCanvasとImage生成
     static void Init()
     {
