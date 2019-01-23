@@ -60,12 +60,12 @@ public class FadeManager : MonoBehaviour
         //扉用のイメージを二つ作成
         doorLeftImage = new GameObject("doorImageLeft").AddComponent<Image>();
         doorLeftImage.sprite = Resources.Load<Sprite>("Sprite/shutter_3");
-        doorLeftImage.rectTransform.sizeDelta = new Vector2(320, Screen.height);
+        doorLeftImage.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         doorLeftImage.transform.SetParent(fadeCanvas.transform, false);
 
         doorRightImage = new GameObject("doorImageRight").AddComponent<Image>();
         doorRightImage.sprite = Resources.Load<Sprite>("Sprite/shutter_4");
-        doorRightImage.rectTransform.sizeDelta = new Vector2(320,Screen.height);
+        doorRightImage.rectTransform.sizeDelta = new Vector2(Screen.width,Screen.height);
         doorRightImage.transform.SetParent(fadeCanvas.transform, false);
 
         //待ち状態
