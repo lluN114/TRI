@@ -229,7 +229,7 @@ Prefab:
         type: 2}
       propertyPath: electric
       value: 
-      objectReference: {fileID: 1799691017372722, guid: 0638fe9581fcf234ba17f399eabc0455,
+      objectReference: {fileID: 1625655703241700, guid: a6d199e2a869e424bae9d4e2424d2848,
         type: 2}
     - target: {fileID: 114913907518912018, guid: 95f790d6c6390ce46a7f1bfe4d98b990,
         type: 2}
@@ -264,6 +264,12 @@ Prefab:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114913907518912018, guid: 95f790d6c6390ce46a7f1bfe4d98b990,
+        type: 2}
+      propertyPath: electric2
+      value: 
+      objectReference: {fileID: 1625655703241700, guid: a6d199e2a869e424bae9d4e2424d2848,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95f790d6c6390ce46a7f1bfe4d98b990, type: 2}
   m_IsPrefabAsset: 0
@@ -679,7 +685,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0c02614660ad1324c8b352b8abd4d37d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -811,9 +817,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1
-
-'
+  m_Text: 
 --- !u!222 &575562777
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1075,9 +1079,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '3
-
-'
+  m_Text: 
 --- !u!222 &611914482
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1141,7 +1143,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: adec3221ffb9d1b40b5b0b73415c86e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff65cf52399c519499da8afa1169c778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1267,7 +1269,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: efc6448791144d4489b7e2d9aff9c16d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1539,7 +1541,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 1358fb61ade1b50408b23239fb90f967, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1866,9 +1868,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '2
-
-'
+  m_Text: 
 --- !u!222 &1987170703
 CanvasRenderer:
   m_ObjectHideFlags: 0

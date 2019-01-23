@@ -11,8 +11,13 @@ public class Electric : MonoBehaviour
     public float acceleration;//加速度
 
     SpriteRenderer sp;//画像
-    public Sprite UpSprite;
-    public Sprite LeftSprite;
+    //public Sprite UpSprite;
+    //public Sprite LeftSprite;
+    Animator an;
+    public RuntimeAnimatorController UpAnimation;
+    //public RuntimeAnimatorController DownAnimation;
+    public RuntimeAnimatorController LeftAnimation;
+    //public RuntimeAnimatorController RightAnimation;
 
     //屈折時に呼び出すオブジェクト
     public GameObject refractionObj;
@@ -29,6 +34,7 @@ public class Electric : MonoBehaviour
         turnLimit = 3;
         acceleration = 1.2f;
         sp=GetComponent<SpriteRenderer>();
+        an = GetComponent<Animator>();
         SpriteChange(forward);
     }
 
@@ -38,7 +44,6 @@ public class Electric : MonoBehaviour
     {
 
         Move();
-
     }
     void Move()
     {
@@ -98,22 +103,26 @@ public class Electric : MonoBehaviour
     {
         if (forward.x > 0)
         {//右方向
-            sp.sprite = LeftSprite;
+            an.runtimeAnimatorController = LeftAnimation;
+            //sp.sprite = LeftSprite;
             sp.flipX = true;
         }
         else if (forward.x < 0)
         {//左方向
-            sp.sprite = LeftSprite;
+            an.runtimeAnimatorController = LeftAnimation;
+            //sp.sprite = LeftSprite;
             sp.flipX = false;
         }
         else if (forward.y > 0)
         {//上方向
-            sp.sprite = UpSprite;
+            an.runtimeAnimatorController = UpAnimation;
+            //sp.sprite = UpSprite;
             sp.flipY = false;
         }
         else if (forward.y < 0)
         {//下方向
-            sp.sprite = UpSprite;
+            an.runtimeAnimatorController = UpAnimation;
+            //sp.sprite = UpSprite;
             sp.flipY = true;
         }
     }

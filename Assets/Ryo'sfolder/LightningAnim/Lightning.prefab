@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4494232309820324}
   - component: {fileID: 212198794757004376}
   - component: {fileID: 95723556521342892}
+  - component: {fileID: 50838740506807928}
+  - component: {fileID: 61329536561371152}
+  - component: {fileID: 114094586678867044}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -36,11 +39,56 @@ Transform:
   m_GameObject: {fileID: 1625655703241700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50838740506807928
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625655703241700}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &61329536561371152
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625655703241700}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!95 &95723556521342892
 Animator:
   serializedVersion: 3
@@ -59,6 +107,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114094586678867044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1625655703241700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4301ecabd5fe540a14e17bb7d37ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnLimit: 0
+  speed: 0
+  forward: {x: 0, y: 0}
+  acceleration: 0
+  UpAnimation: {fileID: 9100000, guid: e9d9857b58195684b816adca02bfb702, type: 2}
+  LeftAnimation: {fileID: 9100000, guid: d916b9043c56c7647ad460a3ae9a3df6, type: 2}
+  refractionObj: {fileID: 1325086176943186, guid: b4425c5060b13fa42a5d0e9a5636f042,
+    type: 2}
+  ExplosionObj: {fileID: 0}
 --- !u!212 &212198794757004376
 SpriteRenderer:
   m_ObjectHideFlags: 1

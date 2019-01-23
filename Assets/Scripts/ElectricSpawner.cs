@@ -7,9 +7,11 @@ public class ElectricSpawner : MonoBehaviour {
     public float spawnDelay;//生成間隔
 
     public GameObject electric;
+    //public GameObject electric2;
     private float timer;
     public bool eUp, eDown, eRight, eLeft;
     public bool isSpawned;
+
 
 
     // Use this for initialization
@@ -41,25 +43,34 @@ public class ElectricSpawner : MonoBehaviour {
         }
 
         GameObject obj;
+        //GameObject obj2;
         if (eUp)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(0, 1);
+            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(90,0,0));
+            //obj2.GetComponent<Electric>().forward = new Vector2(0, 1);
         }
         if (eDown)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(0, -1);
+            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(-90, 0, 0));
+            //obj2.GetComponent<Electric>().forward = new Vector2(0, -1);
         }
         if (eRight)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(1, 0);
+            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(180, 0, 0));
+            //obj2.GetComponent<Electric>().forward = new Vector2(1, 0);
         }
         if (eLeft)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(-1, 0);
+            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(0, 0, 0));
+            //obj2.GetComponent<Electric>().forward = new Vector2(-1, 0);
         }
 
         //スポナー初期化
@@ -69,6 +80,7 @@ public class ElectricSpawner : MonoBehaviour {
     public void Spawn(Vector2 vec)
     {
         GameObject obj;
+        GameObject obj2;
 
         if (!isSpawned)
         {
