@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4559727199521808}
   - component: {fileID: 212620721056471562}
+  - component: {fileID: 114859010139436070}
   - component: {fileID: 95459812236025282}
   m_Layer: 0
-  m_Name: Reflection_Effect_2
+  m_Name: Reflection2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +60,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114859010139436070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359353962319260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99062a1906e38f4cb61fe3fa7aa4ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212620721056471562
 SpriteRenderer:
   m_ObjectHideFlags: 1
