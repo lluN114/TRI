@@ -105,7 +105,7 @@ MonoBehaviour:
   acceleration: 0
   UpAnimation: {fileID: 0}
   LeftAnimation: {fileID: 0}
-  refractionObj: {fileID: 1325086176943186, guid: b4425c5060b13fa42a5d0e9a5636f042,
+  refractionObj: {fileID: 1359353962319260, guid: a3291386db8b5b841ad6aa014de31bba,
     type: 2}
   ExplosionObj: {fileID: 0}
 --- !u!212 &212937489063054960
