@@ -21,7 +21,7 @@ public class EnemyAI : Controller {
         if (timer >= actionDelay)
         {
             timer = 0;
-            StartTouch(GameObject.Find("spawner"));
+            StartTouch(FindSpawner());
         }
 
         FlickState();
@@ -33,5 +33,13 @@ public class EnemyAI : Controller {
     void CheckRoot()
     {
       //ライフによって変更or パターン
+    }
+
+    //スポナー設定
+    GameObject FindSpawner()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("ElectricSpawner");
+        int iRand = Random.Range(0, objs.Length);
+        return objs[iRand];
     }
 }

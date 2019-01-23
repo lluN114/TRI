@@ -47,20 +47,20 @@ public class CameraController : MonoBehaviour {
                 move.y = 0;
                 move.z = -10;
 
-                //カメラ移動
-                //反転しているかどうか
-                int flip = (isSlideFlip) ? 1 : -1;
-                camera.gameObject.transform.position += move * DRAG_POWER * flip;
+                ////カメラ移動
+                ////反転しているかどうか
+                //int flip = (isSlideFlip) ? 1 : -1;
+                //camera.gameObject.transform.position += move * DRAG_POWER * flip;
 
-                //移動制限
-                if (camera.gameObject.transform.position.x <= CAM_LIMIT_X_MIN)
-                {
-                    camera.gameObject.transform.position = new Vector3(CAM_LIMIT_X_MIN, 0,-10);
-                }
-                if (camera.gameObject.transform.position.x >= CAM_LIMIT_X_MAX)
-                {
-                    camera.gameObject.transform.position = new Vector3(CAM_LIMIT_X_MAX, 0,-10);
-                }
+                ////移動制限
+                //if (camera.gameObject.transform.position.x <= CAM_LIMIT_X_MIN)
+                //{
+                //    camera.gameObject.transform.position = new Vector3(CAM_LIMIT_X_MIN, 0,-10);
+                //}
+                //if (camera.gameObject.transform.position.x >= CAM_LIMIT_X_MAX)
+                //{
+                //    camera.gameObject.transform.position = new Vector3(CAM_LIMIT_X_MAX, 0,-10);
+                //}
             }
         }
     } 
