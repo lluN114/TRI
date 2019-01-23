@@ -6,17 +6,19 @@ public class ElectricSpawner : MonoBehaviour {
 
     public float spawnDelay;//生成間隔
 
-    public GameObject electric;
-    //public GameObject electric2;
+    public GameObject PlayerElectric;
+    public GameObject EnemyElectric;
     private float timer;
     public bool eUp, eDown, eRight, eLeft;
     public bool isSpawned;
-
-
+    
 
     // Use this for initialization
     void Start () {
         spawnDelay = 2.0f;
+
+        name = "spawner";
+        tag = "ElectricSpawner";
 	}
 	
 	// Update is called once per frame
@@ -32,55 +34,74 @@ public class ElectricSpawner : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Spawn();
+            Spawn("Player");
         }
     }
-    public void Spawn()
+    public void Spawn(string sTag)
     {
+        Debug.Log("sTag="+sTag);
         if(!isSpawned)
         {
             return;
         }
-
+        GameObject electric = new GameObject();
         GameObject obj;
-        //GameObject obj2;
+
+        if (sTag == "Player")
+        {
+            electric = PlayerElectric;
+        }
+        else if(sTag=="Enemy")
+        {
+            electric = EnemyElectric;
+        }
+        else
+        {
+            return;
+        }
+
         if (eUp)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(0, 1);
-            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(90,0,0));
-            //obj2.GetComponent<Electric>().forward = new Vector2(0, 1);
         }
         if (eDown)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(0, -1);
-            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(-90, 0, 0));
-            //obj2.GetComponent<Electric>().forward = new Vector2(0, -1);
         }
         if (eRight)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(1, 0);
-            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(180, 0, 0));
-            //obj2.GetComponent<Electric>().forward = new Vector2(1, 0);
         }
         if (eLeft)
         {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(-1, 0);
-            //obj2 = Instantiate(electric2, transform.position, Quaternion.Euler(0, 0, 0));
-            //obj2.GetComponent<Electric>().forward = new Vector2(-1, 0);
         }
 
         //スポナー初期化
         isSpawned = false;
         timer = 0.0f;
     }
-    public void Spawn(Vector2 vec)
+    public void Spawn(string sTag , Vector2 vec)
     {
+        GameObject electric = new GameObject();
         GameObject obj;
-        GameObject obj2;
+
+        if (sTag == "Player")
+        {
+            electric = PlayerElectric;
+        }
+        else if (sTag == "Enemy")
+        {
+            electric = EnemyElectric;
+        }
+        else
+        {
+            return;
+        }
 
         if (!isSpawned)
         {
@@ -89,7 +110,7 @@ public class ElectricSpawner : MonoBehaviour {
 
         if (vec.x == 0 && vec.y == 0)
         {
-            Spawn();
+            Spawn(sTag);
         }
         else
         {

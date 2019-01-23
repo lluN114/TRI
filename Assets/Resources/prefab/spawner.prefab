@@ -78,8 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968265631bc4ad843b0b931f66cb418a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPAWN_DELAY: 2
-  electric: {fileID: 1799691017372722, guid: 0638fe9581fcf234ba17f399eabc0455, type: 2}
+  spawnDelay: 0
+  PlayerElectric: {fileID: 1838691547684226, guid: b62a63d0a2ecb4f47af8aefaaff8d5af,
+    type: 2}
+  EnemyElectric: {fileID: 1799691017372722, guid: 0638fe9581fcf234ba17f399eabc0455,
+    type: 2}
   eUp: 1
   eDown: 0
   eRight: 0
@@ -120,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd4673bb5cf939247888e05ac5b1a5c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdd88ced69d8a0749bc3e681f55e61d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
