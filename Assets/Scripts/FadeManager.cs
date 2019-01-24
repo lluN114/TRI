@@ -40,6 +40,9 @@ public class FadeManager : MonoBehaviour
     private static float countDownWaitTime;
     private static bool isCountDownWait;
 
+    //終了してゲームがスタートできるかどうか
+    public static bool isGameStart = false;
+
     //サイズ調整関連
     //画面サイズひっぱてきて倍率で画像サイズドーン
     //基本は画像サイズで取ってあるからそれで大丈夫なはず
@@ -87,6 +90,8 @@ public class FadeManager : MonoBehaviour
 
         countDownWaitTime = 0;
         isCountDownWait = false;
+
+        isGameStart = true;
     }
 
     //フェードイン開始
@@ -231,5 +236,9 @@ public class FadeManager : MonoBehaviour
                 SceneManager.LoadScene(nextScene);
             }
         }
+    }
+    public static bool GetGameStart()
+    {
+        return isGameStart;
     }
 }
