@@ -10,7 +10,7 @@ public class EnemyAI : Controller {
 
 	// Use this for initialization
 	void Start () {
-        actionDelay = 2.0f;
+        actionDelay = 3.0f;
         timer = 0;
 	}
 	
@@ -22,6 +22,11 @@ public class EnemyAI : Controller {
         {
             timer = 0;
             StartTouch(FindSpawner());
+            actionDelay += Random.Range(-0.5f, 0.5f);
+            if (actionDelay < 2.0 || actionDelay > 3.0f)
+            {
+                actionDelay = 3.0f;
+            }
         }
 
         FlickState();

@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -118,14 +117,14 @@ public class MapManager : MonoBehaviour
                     i += 2;
                     y = int.Parse(temp.Substring(i + 1, 2))*-1+mapY;
                     i += 2;
-                    blockPositions.Add(new Vector2(x-0.5f,y-0.5f));
+                    blockPositions.Add(new Vector2(x,y-0.5f));
                     break;
                 case 'D'://電流
                     x = int.Parse(temp.Substring(i + 1, 2))-mapSize/2;
                     i += 2;
                     y = int.Parse(temp.Substring(i + 1, 2))*-1+mapY;
                     i += 2;
-                    electricPositions.Add(new Vector2(x-0.5f, y-0.5f));
+                    electricPositions.Add(new Vector2(x, y-0.5f));
                     break;
             }
         }

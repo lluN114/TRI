@@ -19,10 +19,26 @@ public class ElectricSpawner : MonoBehaviour {
 
         name = "spawner";
         tag = "ElectricSpawner";
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+        eUp = false;
+        eDown = false;
+        eRight = false;
+        eLeft = false;
+
+        int iRand = Random.Range(0, 100)%2;
+        if (iRand == 0)
+        {
+            eUp = true;
+            eDown = true;
+        }else
+        {
+            eRight = true;
+            eLeft = true;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (!isSpawned)
         {
@@ -44,7 +60,7 @@ public class ElectricSpawner : MonoBehaviour {
         {
             return;
         }
-        GameObject electric = new GameObject();
+        GameObject electric;
         GameObject obj;
 
         if (sTag == "Player")
@@ -80,14 +96,14 @@ public class ElectricSpawner : MonoBehaviour {
             obj = Instantiate(electric, transform.position, transform.rotation);
             obj.GetComponent<Electric>().forward = new Vector2(-1, 0);
         }
-
+        ChangeSpawner();
         //スポナー初期化
         isSpawned = false;
         timer = 0.0f;
     }
     public void Spawn(string sTag , Vector2 vec)
     {
-        GameObject electric = new GameObject();
+        GameObject electric;
         GameObject obj;
 
         if (sTag == "Player")
@@ -122,6 +138,17 @@ public class ElectricSpawner : MonoBehaviour {
         isSpawned = false;
         timer = 0.0f;
 
+    }
+    void ChangeSpawner()
+    {
+        if (eUp) eUp = false;
+        else eUp = true;
+        if (eDown) eDown = false;
+        else eDown = true;
+        if (eRight) eRight = false;
+        eRight = true;
+        if (eLeft) eLeft = false;
+        eLeft = true;
     }
     public float GetTimer()
     {
