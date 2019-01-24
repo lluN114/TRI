@@ -97,48 +97,66 @@ public class FadeManager : MonoBehaviour
     //フェードイン開始
     public static void FadeIn()
     {
-        if (doorLeftImage == null) Init();
-        isFadeIn = true;
-        
-        /*
-        doorLeftImage.rectTransform.localPosition = new Vector3(
-        doorLeftImage.rectTransform.localPosition.x,
-        doorLeftImage.rectTransform.localPosition.y,
-        doorLeftImage.rectTransform.localPosition.z
-        );
+        if (isFadeIn == false)
+        {
+            if (doorLeftImage == null) Init();
+            isFadeIn = true;
 
-        doorRightImage.rectTransform.localPosition = new Vector3(
-            doorRightImage.rectTransform.localPosition.x,
-            doorRightImage.rectTransform.localPosition.y,
-            doorRightImage.rectTransform.localPosition.z
+            doorLeftImage.rectTransform.localPosition = new Vector3(
+            0,
+            doorLeftImage.rectTransform.localPosition.y,
+            doorLeftImage.rectTransform.localPosition.z
             );
-            */
+
+            doorRightImage.rectTransform.localPosition = new Vector3(
+                0,
+                doorRightImage.rectTransform.localPosition.y,
+                doorRightImage.rectTransform.localPosition.z
+                );
+
+            /*
+            doorLeftImage.rectTransform.localPosition = new Vector3(
+            doorLeftImage.rectTransform.localPosition.x,
+            doorLeftImage.rectTransform.localPosition.y,
+            doorLeftImage.rectTransform.localPosition.z
+            );
+
+            doorRightImage.rectTransform.localPosition = new Vector3(
+                doorRightImage.rectTransform.localPosition.x,
+                doorRightImage.rectTransform.localPosition.y,
+                doorRightImage.rectTransform.localPosition.z
+                );
+                */
+        }
     }
 
     //フェードアウト開始
     public static void FadeOut(int n)
     {
-        if (doorLeftImage == null) Init();
-        nextScene = n;
-        fadeCanvas.enabled = true;
-        isFadeOut = true;
+        if (isFadeOut == false)
+        {
+            if (doorLeftImage == null) Init();
+            nextScene = n;
+            fadeCanvas.enabled = true;
+            isFadeOut = true;
 
-        doorDistance = doorLeftImage.rectTransform.rect.width/*-(240*320/690)*/;
+            doorDistance = doorLeftImage.rectTransform.rect.width/*-(240*320/690)*/;
 
-        doorLeftImage.rectTransform.localPosition = new Vector3(
-            Camera.main.transform.position.x - doorDistance,
-            doorLeftImage.rectTransform.localPosition.y,
-            doorLeftImage.rectTransform.localPosition.z
-            );
+            doorLeftImage.rectTransform.localPosition = new Vector3(
+                Camera.main.transform.position.x - doorDistance,
+                doorLeftImage.rectTransform.localPosition.y,
+                doorLeftImage.rectTransform.localPosition.z
+                );
 
-        doorRightImage.rectTransform.localPosition = new Vector3(
-            Camera.main.transform.position.x + doorDistance,
-            doorRightImage.rectTransform.localPosition.y,
-            doorRightImage.rectTransform.localPosition.z
-            );
+            doorRightImage.rectTransform.localPosition = new Vector3(
+                Camera.main.transform.position.x + doorDistance,
+                doorRightImage.rectTransform.localPosition.y,
+                doorRightImage.rectTransform.localPosition.z
+                );
 
-        countDawnImageReady.enabled = false;
-        countDawnImageGo.enabled = false;
+            countDawnImageReady.enabled = false;
+            countDawnImageGo.enabled = false;
+        }
     }
 
     public static void FadeReady()
@@ -204,6 +222,11 @@ public class FadeManager : MonoBehaviour
         {
             //扉の移動距離計算
             float dst = (Time.deltaTime / fadeTime) * doorDistance;
+
+            if (doorLeftImage.rectTransform.localPosition.x + dst > 0)
+            {
+                dst = doorLeftImage.rectTransform.localPosition.x * -1;
+            }
 
             if (isWait == false)
             {
