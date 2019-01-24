@@ -6,7 +6,7 @@ public class BgMove : MonoBehaviour {
 
     [SerializeField, Range(0, 10)]
     float time = 1;
-
+    
     [SerializeField]
     Vector3 endPosition;
 
@@ -18,17 +18,22 @@ public class BgMove : MonoBehaviour {
 
     public GameObject Lightning;
 
+    RectTransform rect;
+
     void OnEnable()
     {
+
+        rect = GetComponent<RectTransform>();
         if (time <= 0)
         {
-            transform.position = endPosition;
+            //rect.localPosition = endPosition;
+            
             enabled = false;
             return;
         }
 
         startTime = Time.timeSinceLevelLoad;
-        startPosition = transform.position;
+        startPosition = rect.localPosition;
     }
 
     void Update()
@@ -36,16 +41,16 @@ public class BgMove : MonoBehaviour {
         var diff = Time.timeSinceLevelLoad - startTime;
         if (diff > time)
         {
-            transform.position = endPosition;
-            if (transform.name == "lose") GetComponent<SinWave>().enabled = true;
-            if (transform.name == "win") Lightning.SetActive(true);
+            rect.localPosition = endPosition;
+            if (transform.name == "Lose") GetComponent<SinWave>().enabled = true;
+            if (transform.name == "Win") Lightning.SetActive(true);
             enabled = false;
         }
 
         var rate = diff / time;
         //var pos = curve.Evaluate(rate);
 
-        transform.position = Vector3.Lerp(startPosition, endPosition, rate);
+        rect.localPosition = Vector3.Lerp(startPosition, endPosition, rate);
         //transform.position = Vector3.Lerp (startPosition, endPosition, pos);
     }
 }

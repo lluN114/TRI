@@ -6,8 +6,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     //カメラの左右制限
-    public const float CAM_LIMIT_X_MIN = -10;
-    public const float CAM_LIMIT_X_MAX = 10;
+    public const float CAM_LIMIT_X_MIN = -7;
+    public const float CAM_LIMIT_X_MAX = 7;
     private const float TOUCH_ACCEPT_HEIGHT = 0.4f;
     private const float DRAG_POWER = 0.0025f;
 
@@ -47,12 +47,12 @@ public class CameraController : MonoBehaviour {
                 move.y = 0;
                 move.z = -10;
 
-                //カメラ移動
-                //反転しているかどうか
+                ////カメラ移動
+                ////反転しているかどうか
                 int flip = (isSlideFlip) ? 1 : -1;
                 camera.gameObject.transform.position += move * DRAG_POWER * flip;
 
-                //移動制限
+                ////移動制限
                 if (camera.gameObject.transform.position.x <= CAM_LIMIT_X_MIN)
                 {
                     camera.gameObject.transform.position = new Vector3(CAM_LIMIT_X_MIN, 0,-10);

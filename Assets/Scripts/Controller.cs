@@ -138,7 +138,7 @@ public class Controller : MonoBehaviour
             case "Wall":
                 break;
             case "ElectricSpawner":
-                obj.GetComponent<ElectricSpawner>().Spawn(vec);
+                obj.GetComponent<ElectricSpawner>().Spawn(tag,vec);
                 Debug.Log("SPAWN");
                 break;
             default:
