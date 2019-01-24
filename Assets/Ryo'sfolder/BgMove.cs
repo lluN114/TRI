@@ -33,7 +33,7 @@ public class BgMove : MonoBehaviour {
         }
 
         startTime = Time.timeSinceLevelLoad;
-        startPosition = rect.localPosition;
+       // startPosition = rect.localPosition;
     }
 
     void Update()

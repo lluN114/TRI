@@ -10,7 +10,7 @@ public class EleBall : MonoBehaviour {
     public float Flash_interval;
 	// Use this for initialization
 	void Start () {
-        light = transform.FindChild("Point Light").GetComponent<Light>();
+        light = transform.Find("Point Light").GetComponent<Light>();
     }
 	
 	// Update is called once per frame

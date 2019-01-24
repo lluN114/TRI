@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61822972372873246}
   - component: {fileID: 212937489063054960}
   - component: {fileID: 114015771298368170}
+  - component: {fileID: 95380116513105806}
   m_Layer: 11
   m_Name: EnemyElectlical
   m_TagString: Electric
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799691017372722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.06, y: -0.16, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,19 +76,37 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1.6, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 2.76}
+    newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.58}
   m_EdgeRadius: 0
+--- !u!95 &95380116513105806
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799691017372722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09286a618704a8b489726ca41a867830, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114015771298368170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,11 +122,15 @@ MonoBehaviour:
   speed: 0
   forward: {x: 0, y: 0}
   acceleration: 0
-  UpAnimation: {fileID: 9100000, guid: e9d9857b58195684b816adca02bfb702, type: 2}
-  LeftAnimation: {fileID: 9100000, guid: d916b9043c56c7647ad460a3ae9a3df6, type: 2}
+  UpAnimation: {fileID: 9100000, guid: 2dee4a8bafe1c634c9d2306f7ef1d676, type: 2}
+  LeftAnimation: {fileID: 9100000, guid: 09286a618704a8b489726ca41a867830, type: 2}
+  boxCollider: {fileID: 61822972372873246}
   refractionObj: {fileID: 1359353962319260, guid: a3291386db8b5b841ad6aa014de31bba,
     type: 2}
-  ExplosionObj: {fileID: 0}
+  ExplosionObj: {fileID: 1359353962319260, guid: a3291386db8b5b841ad6aa014de31bba,
+    type: 2}
+  destroyLimit: 5
+  destTimer: 0
 --- !u!212 &212937489063054960
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -143,12 +166,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b7069dbc301964f458ab4651abef08fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b23619083451c43419f797461e6d2a6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

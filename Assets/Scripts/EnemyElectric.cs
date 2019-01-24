@@ -8,6 +8,7 @@ public class EnemyElectric : Electric {
 	public override void Start () {
         base.Start();
         name = "EnemyElectric";
+        gameObject.layer = 11;
 	}
 	
 	// Update is called once per frame

@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838691547684226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.61, y: 1.99, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,18 +76,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1.6, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 2.76}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.6}
   m_EdgeRadius: 0
 --- !u!95 &95705094793903190
 Animator:
@@ -124,9 +124,13 @@ MonoBehaviour:
   acceleration: 0
   UpAnimation: {fileID: 9100000, guid: e9d9857b58195684b816adca02bfb702, type: 2}
   LeftAnimation: {fileID: 9100000, guid: d916b9043c56c7647ad460a3ae9a3df6, type: 2}
+  boxCollider: {fileID: 61394639797012904}
   refractionObj: {fileID: 1325086176943186, guid: b4425c5060b13fa42a5d0e9a5636f042,
     type: 2}
-  ExplosionObj: {fileID: 0}
+  ExplosionObj: {fileID: 1325086176943186, guid: b4425c5060b13fa42a5d0e9a5636f042,
+    type: 2}
+  destroyLimit: 5
+  destTimer: 0
 --- !u!212 &212496709024629016
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -162,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 276433973e5db7141b142a2142a30af5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8ae4433ffe443f4e85f82cdce6c6c54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

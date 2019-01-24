@@ -146,9 +146,9 @@ public class ElectricSpawner : MonoBehaviour {
         if (eDown) eDown = false;
         else eDown = true;
         if (eRight) eRight = false;
-        eRight = true;
+        else eRight = true;
         if (eLeft) eLeft = false;
-        eLeft = true;
+        else eLeft = true;
     }
     public float GetTimer()
     {
